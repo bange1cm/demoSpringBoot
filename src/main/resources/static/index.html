@@ -14,9 +14,9 @@
 
     <script> <!-- JavaScript to handle button click and fetch message from server -->
         document.getElementById('helloBtn').onclick = async () => {
-            const response = await fetch('/hello');
-            const text = await response.text();
-            document.getElementById('message').innerText = text;
+            const response = await fetch('/hello'); //Frontend GET request to /hello endpoint
+            const text = await response.text(); //wait for the text response
+            document.getElementById('message').innerText = text; //Display the response text in the message paragraph
         }
     </script>
 </body>
