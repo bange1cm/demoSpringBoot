@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Welcome to My App</h1>
+    <button id="helloBtn">Say Hello</button>
+    <p id="message"></p>
+
+    <script>
+        document.getElementById('helloBtn').onclick = async () => {
+            const response = await fetch('/hello');
+            const text = await response.text();
+            document.getElementById('message').innerText = text;
+        }
+    </script>
+</body>
+
+</html>
