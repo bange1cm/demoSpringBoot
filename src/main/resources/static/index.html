@@ -3,26 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My First App</title> <!-- Title of the webpage. What will be displayed in the tab on your browser -->
+    <title>My First App</title> <!-- Title of the webpage -->
     <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
 </head>
 
 <body>
-    <h1>Welcome to My App</h1> <!-- Main heading of the page -->
+    <h1>Welcome to My App</h1>
 
     <input type="text" id="nameInput" placeholder="Enter your name" />
-    <button id="helloBtn">Say Hello</button> <!-- Button to trigger the hello message -->
+    <button id="helloBtn">Say Hello</button>
 
-    <p id="message"></p> <!-- Placeholder for the message. Currently empty -->
+    <p id="message"></p>
 
-    <script> <!-- JavaScript to handle button click and fetch message from server -->
+    <script>
         document.getElementById('helloBtn').onclick = async () => {
             const name = document.getElementById('nameInput').value;
 
-            const response = await fetch('/hello?name=' + name);
-            const text = await response.text();
+            const response = await fetch('/hello', {
+                method: 'POST', // Use POST
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'name=' + encodeURIComponent(name)
+            });
 
-            document.getElementById('message').innerText = text;
+            const text = await response.text();
+            document.getElementById('message').innerText = text; // Update <p> on same page
         }
     </script>
 </body>
