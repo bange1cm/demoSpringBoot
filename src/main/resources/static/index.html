@@ -8,16 +8,30 @@
 </head>
 
 <body>
-    <h1>Welcome to My App</h1> <!-- Main heading of the page -->
-    <button id="helloBtn">Say Hello</button> <!-- Button to trigger the hello message -->
-    <p id="message"></p> <!-- Placeholder for the message. Currently empty -->
+    <h1>Planet App</h1> <!-- Main heading of the page -->
+    <button id="allBtn">List all planets</button>
 
-    <script> <!-- JavaScript to handle button click and fetch message from server -->
-        document.getElementById('helloBtn').onclick = async () => {
-            const response = await fetch('/hello'); //Frontend GET request to /hello endpoint
-            const text = await response.text(); //wait for the text response
-            document.getElementById('message').innerText = text; //Display the response text in the message paragraph
+    <!-- This is where the list of planets will be displayed. -->
+    <ul id="planetList"> </ul>
+
+
+    <script>
+        //display the planets in the HTML
+        const planetList = document.getElementById("planetList");
+        function displayPlanets(planets) {
+            planetList.innerHTML = "";
+            planets.forEach(p => {
+                const li = document.createElement("li");
+                li.textContent = p.name + " | Size: " + p.size + " km diameter | Distance from Sun: " + p.distanceFromSun + " million km | Number of moons: " + p.numberOfMoons + " | Description: " + p.description;
+                planetList.appendChild(li);
+            });
         }
+
+        document.getElementById("allBtn").onclick = async () => {
+            const response = await fetch("/planets"); //Frontend GET request to the /planets endpoint
+            const planets = await response.json(); //wait for the response
+            displayPlanets(planets); //display the planets in the HTML
+        };
     </script>
 </body>
 
