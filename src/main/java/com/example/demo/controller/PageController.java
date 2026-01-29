@@ -22,4 +22,9 @@ public class PageController {
     public List<Planet> getPlanets() {
         return planetService.getAllPlanets();
     }
+
+    @GetMapping("/planets/mercury")
+    public Planet getMercury() {
+        return planetService.getPlanetByName("Mercury");
+    }
 }

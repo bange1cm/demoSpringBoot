@@ -65,5 +65,18 @@ public class PlanetService {
     public ArrayList<Planet> getAllPlanets() {
         return planets;
     }
+
+    //method to get a planet by its name
+    public Planet getPlanetByName(String name) {
+        for (Planet planet : planets) {
+            if (planet.getName().equalsIgnoreCase(name)) {
+                return planet;
+            }
+        }
+        return null; // Return null if no planet with the given name is found
+
+        //make a loop to look through the planets ArrayList
+        //if the name matches the planet's name, return that planet
+    }
 }
 

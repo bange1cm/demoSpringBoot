@@ -10,29 +10,44 @@
 <body>
     <h1>Planet App</h1> <!-- Main heading of the page -->
     <button id="allBtn">List all planets</button>
+    <button id="mercuryBtn">Mercury</button>
 
     <!-- This is where the list of planets will be displayed. -->
     <ul id="planetList"> </ul>
 
+    <p id="mercuryP"></p>
 
-    <script>
-        //display the planets in the HTML
-        const planetList = document.getElementById("planetList");
-        function displayPlanets(planets) {
-            planetList.innerHTML = "";
-            planets.forEach(p => {
-                const li = document.createElement("li");
-                li.textContent = p.name + " | Size: " + p.size + " km diameter | Distance from Sun: " + p.distanceFromSun + " million km | Number of moons: " + p.numberOfMoons + " | Description: " + p.description;
-                planetList.appendChild(li);
-            });
-        }
 
-        document.getElementById("allBtn").onclick = async () => {
-            const response = await fetch("/planets"); //Frontend GET request to the /planets endpoint
-            const planets = await response.json(); //wait for the response
-            displayPlanets(planets); //display the planets in the HTML
-        };
-    </script>
+
 </body>
 
 </html>
+<script>
+    //display the planets in the HTML
+    const planetList = document.getElementById("planetList");
+    function displayPlanets(planets) {
+        planetList.innerHTML = "";
+        planets.forEach(p => {
+            const li = document.createElement("li");
+            li.textContent = p.name + " | Size: " + p.size + " km diameter | Distance from Sun: " + p.distanceFromSun + " million km | Number of moons: " + p.numberOfMoons + " | Description: " + p.description;
+            planetList.appendChild(li);
+        });
+    }
+
+    function displayMercury(planet) {
+        const mercuryP = document.getElementById("mercuryP");
+        mercuryP.textContent = planet.name + " | Size: " + planet.size + " km diameter | Distance from Sun: " + planet.distanceFromSun + " million km | Number of moons: " + planet.numberOfMoons + " | Description: " + planet.description;
+    }
+
+    document.getElementById("allBtn").onclick = async () => {
+        const response = await fetch("/planets"); //Frontend GET request to the /planets endpoint
+        const planets = await response.json(); //wait for the response
+        displayPlanets(planets); //display the planets in the HTML
+    };
+
+    document.getElementById("mercuryBtn").onclick = async () => {
+        const response = await fetch("/planets/mercury"); //Frontend GET request to the /planets/1 endpoint
+        const planet = await response.json(); //wait for the response
+        displayMercury(planet);
+    }
+</script>
