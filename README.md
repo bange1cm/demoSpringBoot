@@ -9,7 +9,8 @@
 1. html front end
 2. to controller backend (use @RestController and @GetMapping)
 3. to service logic (where the actual data is interacted with)
-4. Bonus: @SpringBootApplication with public void main method to run the application (DemoApplication.java for this project)
+4. can make models aka classic java classes and objects
+5. Bonus: @SpringBootApplication with public void main method to run the application (DemoApplication.java for this project)
 
 ## To start your own SpringBoot app
 https://spring.io/quickstart
